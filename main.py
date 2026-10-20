@@ -4,8 +4,9 @@ totalLines = 0
 for i in range(target):
     totalLines += 3 + i
 
-currentLine = 0
+halfDoor = (target - 1) // 2
 
+currentLine = 0
 for floor in range(target):
     height = 3 + floor
     
@@ -17,7 +18,6 @@ for floor in range(target):
         
         hasDoor = floor == target - 1 and l >= 2
         if hasDoor:
-            halfDoor = (target - 1) // 2 
             stars -= halfDoor
         
         string = " " * spaces
@@ -27,11 +27,14 @@ for floor in range(target):
         string += "*" * stars
         # middle
         if hasDoor:
-            string += "|" * (halfDoor * 2 + 1)
+            if target >= 5 and l == height // 2 + 1:
+                string +=  "|" * (halfDoor * 2 - 1) + "$" + "|"
+            else:
+                string += "|" * (halfDoor * 2 + 1)
         else:
             string += "*"
         # right side
         string += "*" * stars
         string += "\\"
 
-        print(string)
+        print(halfDoor, string)
