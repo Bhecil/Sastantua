@@ -37,4 +37,4 @@ for floor in range(target):
         string += "*" * stars
         string += "\\"
 
-        print(halfDoor, string)
+        print(string)
